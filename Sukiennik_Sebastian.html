@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <title>Coffe World</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Darmowa strona o kawie">
+  <meta name="keywords" content="coffe, kawa, parzenie kawy">
+  <meta name="author" content="Sebastian Sukiennik">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Połączneie pliku css do htmla -->
+  <link rel="stylesheet" media="screen" href="Styles/style.css" />
+  <link rel="shortcut icon" href="Images/logo3.png" />
+  <link href="Styles/all.css" rel="stylesheet" />
+
+  <script src="JavaScript/zegar.js"></script>
+
+  <!-- Połączneie menu gornego do css -->
+  <link rel="stylesheet" href="Styles/styl_menu_gorne.css">
+
+  <!-- Menu boczne -->
+  <link href="Styles/all.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0px;
+    }
+
+    .side-menu-container,
+    .side-menu,
+    .side-menu>a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+    }
+
+    .side-menu-container {
+      position: fixed;
+      height: 100vh;
+      left: 0px;
+    }
+
+    .side-menu>a {
+      margin: 5px 0px;
+      height: 40px;
+      background-color: grey;
+    }
+
+    .side-menu>a:hover {
+      margin: 5px 0px;
+      height: 40px;
+      color: #fff;
+      background-color: #000;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Dodaję do wszystkich linków z tych dwóch klas funkcję
+      $(".nav-top a,.nav-side a").on("click", function (event) {
+        // Upewniam się, że hash ma jakąś wartość
+        if (this.hash !== "") {
+          // Blokuję domyślne zachowanie
+          event.preventDefault();
+          // this.hash zczytuje atrybut href począwszy od znaku #
+          var hash = this.hash;
+
+          // Używam JQuery animate, żeby uzyskać płynnego scrolla
+          // Numer (800) jest opcjonalny i mówi ile milisekund zajmie przescrolowanie do danego miejsca
+          $("html, body").animate(
+            {
+              scrollTop: $(hash).offset().top,
+            },
+            800,
+            function () {
+              // Add hash (#) to URL when done scrolling (default click behavior)
+              window.location.hash = hash;
+            }
+          );
+        }
+      });
+    });
+    $(window).resize(function () {
+      if ($(window).width() < 600) {
+        $("#menu-boczne").hide();
+      }
+      else {
+        $("#menu-boczne").show();
+      }
+    });
+    
+    //chowanie/pokazywanie menu bocznego/headera
+    $(document).scroll(function () {
+
+      if ($(window).scrollTop() == 0) {
+        $("#menu-boczne").hide();
+        $(".menu").show();
+
+      } else {
+
+        $(".menu").hide();
+        $("#menu-boczne").show();
+      }
+    });
+
+    $(document).ready(function() {
+    $("#menu-boczne a").click(function() {
+        var target = $(this).attr('href');
+        $('html, body').animate({
+            scrollTop: $(target).offset().top
+        }, 1000);
+    });
+});
+  </script>
+</head>
+
+<body style="margin: 0cm;">
+
+  <!-- Menu górne -->
+  <header>
+    <nav class="menu" id="smallMenu">
+      <div class="logo">
+        <img src="Images/logo.png" alt="logo.png not found">
+      </div>
+      <div class="dropdown">
+        <a href="#"><button class="dropbtn"><img src="Images/home.png" alt="home.png not found"></button></a>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn"><img src="Images/coffeBean.png" alt="coffeBean.png not found"></button>
+        <div class="dropdown-content">
+          <a href="#">Ziarnista</a>
+          <a href="#">Mielona</a>
+          <a href="#">Kapsułki</a>
+          <a href="#">Rozpuszczlana</a>
+          <a href="#">Bezkofeinowa</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn"><img src="Images/coffeMachine.png" alt="coffeMachine.png not found"></button>
+        <div class="dropdown-content">
+          <a href="#">Ciśnieniowy</a>
+          <a href="#">Przelewowy</a>
+          <a href="#">Kawiarka</a>
+          <a href="#">French press</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn"><img src="Images/contact.png" alt="contact.png not found"></button>
+        <div class="dropdown-content">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">Email</a>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="menu" id="mediumMenu">
+      <div class="logo">
+        <img src="Images/logo.png" alt="logo.png not found">
+      </div>
+      <div class="dropdown">
+        <a href="#"><button class="dropbtn">Home</button></a>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Coffe</button>
+        <div class="dropdown-content">
+          <a href="#">Ziarnista</a>
+          <a href="#">Mielona</a>
+          <a href="#">Kapsułki</a>
+          <a href="#">Rozpuszczlana</a>
+          <a href="#">Bezkofeinowa</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Coffe machine</button>
+        <div class="dropdown-content">
+          <a href="#">Ciśnieniowy</a>
+          <a href="#">Przelewowy</a>
+          <a href="#">Kawiarka</a>
+          <a href="#">French press</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Contact</button>
+        <div class="dropdown-content">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">Email</a>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="menu" id="bigMenu">
+      <div class="logo">
+        <p>Coffe World</p>
+      </div>
+
+      <div class="dropdown">
+        <a href="#"><button class="dropbtn">Home</button></a>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Coffe</button>
+        <div class="dropdown-content">
+          <a href="#">Ziarnista</a>
+          <a href="#">Mielona</a>
+          <a href="#">Kapsułki</a>
+          <a href="#">Rozpuszczlana</a>
+          <a href="#">Bezkofeinowa</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Coffe machine</button>
+        <div class="dropdown-content">
+          <a href="#">Ciśnieniowy</a>
+          <a href="#">Przelewowy</a>
+          <a href="#">Kawiarka</a>
+          <a href="#">French press</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Contact</button>
+        <div class="dropdown-content">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">Email</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Menu boczne -->
+  <div id="menu-boczne" class="side-menu-container">
+    <nav class="side-menu">
+      <a class="toSec1" href="Sukiennik_Sebastian.html">
+        <div><i class="fas fa-home"></i></div>
+      </a>
+      <a class="toSec2" href="#sekcja1">
+        <div><i class="fas fa-question"></i></div>
+      </a>
+      <a class="toSec3" href="#sekcja2">
+        <div><i class="fas fa-briefcase"></i></div>
+      </a>
+      <a class="toSec4" href="#sekcja3">
+        <div><i class="fas fa-address-card"></i></div>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Landing page -->
+  <div class="landingPage" id="landingPage">
+    <img src="Images/landingPage2.png" alt="Langing page image not found">
+  </div>
+
+  <!-- Main body -->
+  <div class="container-main container">
+    <div class="container" id="sekcja1">
+      <h1>Historia kawy</h1>
+      <p>
+        <a href="https://www.tastingtable.com/img/gallery/the-best-coffee-shop-in-every-state/l-intro-1639519645.jpg"><img
+            src="https://www.tastingtable.com/img/gallery/the-best-coffee-shop-in-every-state/l-intro-1639519645.jpg"
+            alt="Brak bułki" width="800" height="450" class="imageClass"></a>
+        <a
+          href="https://www.tastingtable.com/img/gallery/the-best-coffee-shop-in-every-state/l-intro-1639519645.jpg">zródło</a>
+      </p>
+      <h2>Pierwsza filiżanka</h2>
+      <p>
+        Rytuał picia kawy zaczął rozpowszechniać się w XVI wieku w Stambule – tam też powstała pierwsza kawiarnia.
+        Początkowo spotkała się ona z wielkim sprzeciwem, jednak już pod koniec wieku niemal wszyscy stali się
+        zwolennikami nie tylko tego czarnego napoju, ale też spotkań towarzyskich przy filiżance kawy. Stopniowo kolejne
+        kawiarnie zaczęły pojawiać się w Europie. Pierwszym Europejczykiem, który opisał kawę, był niemiecki podróżnik
+        Leonard Rauwolf. Początkowo kawa traktowana była jako napój Szatana, jednak kiedy papież Klemens VIII
+        zdementował te niedorzeczne plotki, ludzie stracili wszelkie opory w sięganiu po przysłowiową małą czarną.
+      </p>
+      <hr>
+    </div>
+    <div class="container" id="sekcja2">
+      <h2>Najpopularniejsze rodzaje zieren kawy</h2>
+      <p class="zielony">
+        Arabica i Robusta to dwa najpopularniejsze gatunki kawy, które dostępne są na rynku. Każda z nich ma swój
+        unikalny aromat, który podbił serca wielu miłośników kawy na całym świecie. Na czym polega ich sekret? Czym się
+        od siebie różnią Arabica i Robusta? Kto doceni smak tej pierwszej, a kto powinien zdecydować się na parzenie
+        naparu z ziaren drugiej odmiany?
+      </p>
+      <a href="https://www.tommycafe.pl/img/cms/kawa%20robusta.jpg"><img src="Images/arabicaVSrobusta.jpg"
+          alt="Brak ArabicaVSRobusta" class="imageClass"></a>
+      <h3>Arabica</h3>
+      <p>
+        Kawa uprawiana jest głównie w Afryce i Ameryce Południowej, a jej doskonały smak sprawia, że jest ona
+        najczęściej wybieranym gatunkiem kawy na świecie. Jej uprawa jest wymagająca, ponieważ nieustannie należy
+        ochraniać ją przed chorobami i insektami. Posiada zielone lub zielono-szare ziarna. Aby nabrały one
+        charakterystycznej barwy, muszą one zostać poddane procesowi palenia.
+      </p>
+      <h3>Robusta</h3>
+      <p>
+        Ten gatunek jest łatwiejszy w uprawie, a jego zbiory są bardziej obfite w porównaniu z Arabiką. Przekłada się to
+        na niższą cenę pozyskiwanych z upraw ziaren, które są mniejsze od Arabiki i mają żółto-zieloną barwę.
+      </p>
+      <h3>Najważniejsze różnice między Robustą a Arabicą</h3>
+      <p>
+        Czym więc różni się Arabica od Robusty? Odrębne sposoby produkcji, odmienne warunki uprawy i rejony pochodzenia
+        przekładają się na najważniejsze różnice między tymi najpopularniejszymi odmianami kawy.
+        Arabica ma dużo łagodniejszy <b>smak</b>, który często posiada słodkie nuty. Kawa Robusta natomiast ma dość
+        ostry i wyrazisty aromat, a dodatkowo miewa dość intensywny gorzki posmak.
+        <b>Zawartość kofeiny</b> to dość istotna różnica między Arabicą a Robustą. Pierwsza odmiana charakteryzuje się
+        dość niską zawartością tego związku. Druga natomiast przeciwnie – posiada jej nawet dwa razy więcej.
+        Sposób uprawy i wielkość zbiorów wpływają bezpośrednio na <b>cenę</b> obu odmian. Uprawy Robusty są znacznie
+        mniejsze, jednak ich bezproblemowość oraz obfite zbiory powodują, że cena ziaren tego gatunku jest niższa w
+        porównaniu z Arabicą. Ta jest droższa, ponieważ dużo trudniej jest otrzymać wystarczająco duże zbiory, co
+        powoduje, że plantacje muszą być znacznie większe.
+      </p>
+      <hr />
+    </div>
+    <div class="container" id="sekcja3">
+      <h2>Najpopularniejsze typy kawy</h2>
+      <div class="coffe">
+        <h3>Espresso</h3>
+        <a
+          href="https://lovecoffee.pl/public/manager/images/blog/Kawa-lepszej-i-gorszej-jakosci-–-jak-ja-rozroznic1(1).png"><img
+            src="Images/espresso.png" alt="Brak espresso" width="400" height="400" class="imageClass"></a>
+        <p>
+          W czasach, kiedy na stołach królowała kawa z fusami parzona w szklance, wygląd i pojemność espresso mogła
+          wzbudzać duże zdziwienie. Dzisiaj doskonale znamy walory smakowe małej włoskiej espresso. Już trzy / cztery
+          łyki tej kawy pobudzają nas do działania i zachwycają intensywnością aromatu. Najlepsze włoskie espresso, to
+          te pochodzące ze świeżo zmielonych ziaren kawy. Przy zapewnieniu odpowiedniej temperatury oraz ciśnienia
+          parzenia uzyskujemy kawę o gęstej konsystencji z piękną cremą (gęstą i trwałą pianą) na górze.
+        </p>
+      </div>
+
+      <div class="coffe">
+        <h3>Ristretto</h3>
+        <a href="https://www.coffeedesk.pl/blog/wp-content/uploads/2021/08/AdobeStock_70716646_small.jpeg"><img
+            src="Images/ristretto.jpeg" alt="Brak ristretto" width="400" height="400" class="imageClass"></a>
+        <p>
+          Mocniejsza odmiana espresso. Ristretto z włoskiego oznacza wąski, a w kontekście kawy odnosi się ona do
+          zastosowania bardzo małej ilości wody. Kawę parzymy tak jak espresso, jednak do jej przygotowania
+          wykorzystujemy tylko połowę klasycznej ilości wody, czyli ok. 15 ml. Tym samym uzyskujemy bardzo intensywny
+          napój kawowy. Warto dodać także, że szybsza ekstrakcja kawy ristretto sprawia, że wydziela się nieco mniej
+          kofeiny. Jednocześnie kawa ma bardzo intensywny i głęboki aromat. Ristretto to kawa na jeden lub dwa łyki.
+        </p>
+      </div>
+      <div class="coffe">
+        <h3>Cappuccino</h3>
+        <a href="https://coffeelove.pl/userdata/public/news/images/13.jpg"><img src="Images/cappucino.jpg"
+            alt="Brak cappuccino" width="400" height="400" class="imageClass"></a>
+        <p>
+          Nazwa cappuccino nawiązuje bezpośrednio do brązowych habitów kapucynów (cappuccini), którym to przypisuje się
+          stworzenie przepisu na tę pyszną kawę z mlekiem. Zasadniczo w składzie cappuccino znajduje się:
+        </p>
+        <ul>
+          <li><b>spienione mleko 125 ml</b> – do jego otrzymania wykorzystuje się ok. 100 ml zimnego mleka, które pod
+            wpływem gorącej pary ubija się na gęstą piankę.</li>
+          <li><b>espresso 25 ml</b></li>
+        </ul>
+      </div>
+      <div class="coffe">
+        <h3>Lungo / americano</h3>
+        <a href="https://coffeeofday.com/wp-content/uploads/2017/08/All-You-Need-To-Know-About-Lungo-vs-Espresso.jpg"><img
+            src="Images/lungoAmericano.jpg" alt="Brak lungoAmericano" width="400" height="400" class="imageClass"></a>
+        <p>
+          Jest to typ kawy najbliższy dobrze znanej nam w Polsce czarnej kawie, którą pijemy w dużym kubku. Przymiotnik
+          „lungo” z włoskiego oznacza długi, a w kontekście kawy odnosi się dużej ilości wody, którą wykorzystujemy do
+          przygotowania tego napoju. Kawa lungo zawiera ok. 130 – 170 ml wody. Aromat i intensywność smaku jest
+          zdecydowanie słabsza niż w przypadku klasycznego espresso. Jednak ze względu na długość parzenia, kawa ta
+          zwiera dużo kofeiny.
+        </p>
+      </div>
+      <div class="coffe">
+        <h3>Latte macchiato</h3>
+        <a href="https://coffeeofday.com/wp-content/uploads/2017/08/All-You-Need-To-Know-About-Lungo-vs-Espresso.jpg"><img
+            src="Images/latteMacchiato.jpeg" alt="Brak latteMacchiato" width="400" height="400" class="imageClass"></a>
+        <p>
+          Słowo „latte” z włoskiego oznacza mleko, a obecność tego słowa w nazwie kawy sugeruje, że będzie to napój
+          typowo mleczny. I rzeczywiście to mleko stanowi główny składnik napoju. Kawę tę możemy serwować w klasycznym
+          wydaniu (spienione mleko + kawa) lub ze smakowymi dodatkami. Proporcja tej kawy to ok ¾ mleka oraz ¼ espresso.
+          Kawa ta ma charakterystyczny trzywarstwowy podział – dolną warstwę stanowi gorące mleko, w środku znajduje się
+          kawa espresso, a trzecią górną warstwę stanowi spienione mleko. Warstwowa struktura kawy wynika z faktu, że
+          mleko jest gęstsze od kawy, dlatego opada na dół, z kolei pianka mleczna utrzymuje się na górze.
+        </p>
+      </div>
+      <hr />
+    </div>
+    <div class="container" id="sekcja4">
+      <h2>Spososby parzenia kawy</h2>
+      <p>
+        Kawa czarna, americano, flat white, espresso, latte, ristretto, mrożona… O tym, że jest wiele rodzajów kaw i
+        metod jej parzenia nikogo nie trzeba szczególnie przekonywać. Warto jednak trzymać się kilku podstawowych i
+        naprawdę prostych zasad, aby duży kubek kawy i małe espresso smakowały wyjątkowo, szczególnie w domowym
+        zaciszu.
+        Zarówno alternatywne metody parzenia kawy jak i te bardziej tradycyjne przy użyciu ekspresu ciśnieniowego lub
+        kawiarki mogą wycisnąć z odpowiednio dobranej i właściwie zmielonej kawy całe bogactwo jej smaków i aromatów.
+      </p>
+      <hr />
+      <h2>French press krok po kroku</h2>
+      <p>
+        French press jak sama nazwa wskazuje, został wynaleziony we Francji, ale największą popularność zdobył w Danii
+        i Wielkiej Brytanii. Po raz pierwszy został opatentowany w 1929 roku przez włoskiego projektanta Attilio
+        Caliman.
+      </p>
+      <div class="parentListClass">
+        <div class="listClass">
+          <ol>
+            <li>Zagotuj wodę w czajniku (tyle, aby wypełnić french press), powinna mieć temperaturę około 95°C.</li>
+            <li>W międzyczasie zmiel grubo kawę - zbyt drobne mielenie może przytkać sitko. Wsyp kawę do french pressa.
+            </li>
+            <li>Zalej kawę gorąca wodą w dwóch porcjach - pierwsza jest mniejsza, w skali 1:2 (na 30 gramów kawy, użyj
+              60
+              gramów wody) i służy preinfuzji. Pozwól kawie przeleżeć około 30 sekund, możesz ją delikatnie przemieszać.
+            </li>
+            <li>Dolej pozostałą część wody i delikatnie nałóż pokrywkę na urządzenie. Odczekaj 4 minuty do zaparzenia
+              kawy. </li>
+            <li>Zacznij opuszczać tłoczek delikatnym ruchem, aby odcisnąć fusy. Powinny się one ładnie “sprasować” na
+              dnie
+              naczynia. </li>
+            <li>Po zakończeniu całego procesu parzenia kawy we french pressie należy natychmiast podać kawę. Nie należy
+              pozwolić jej zbyt długo leżeć w naczyniu, ponieważ może dojść do jej przeparzenia.</li>
+          </ol>
+        </div>
+        <div class="listClass">
+          <ul>
+            <li>Kawiarka</li>
+            <li>Chemex</li>
+            <li>AeroPress</li>
+            <li>French press</li>
+            <li>Syfon</li>
+            <li>Drip</li>
+            <li>Kawa po turecku</li>
+            <li>Kawa z ekspresu kolbowego</li>
+            <li>Cold brew</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tabelClass">
+        <table>
+          <tr>
+            <th>Państwo</th>
+            <th>Kg kawy</th>
+          </tr>
+          <tr>
+            <td>Finlandia</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <td>Norwegia</td>
+            <td>9,9</td>
+          </tr>
+          <tr>
+            <td>Islandia</td>
+            <td>9</td>
+          </tr>
+          <tr>
+            <td>Dania</td>
+            <td>8,6</td>
+          </tr>
+          <tr>
+            <td>Holandia</td>
+            <td>8,2</td>
+          </tr>
+        </table>
+      </div>
+      <h3>Spożycie kawy na świecie (kilogramy na obywatela)</h3>
+
+      <p>
+        Dlaczego w Finlandii, Norwegii, Danii i Szwecji pije się tak dużo kawy? Otóż, Skandynawia znana jest nie tylko
+        ze swoich niskich temperatur i wysokich cen, ale także z tradycji Hygge oraz Fika. Fika w wolnym tłumaczeniu
+        oznacza “rzuć cokolwiek robisz i zatrzymaj się, żeby cieszyć się swoją kawą”. Fika to moment dla Ciebie, który
+        możesz spędzić na spokojnym rozmyślaniu lub dzielić go z przyjaciółmi. Ma pozwolić Ci na ukojenie nerwów i
+        zebranie energii do działania na całą resztę dnia. Jest wiele instrukcji Fika(nia?), najprostsza, jaką udało mi
+        się skonstruować to:
+      </p>
+      <ol>
+        <li>Usiądź wygodnie i odpręż się</li>
+        <li>Przygotuj kubek kawy</li>
+        <li>Zdobądź ciastko (albo jakąkolwiek inną przekąskę na jaką masz ochotę)</li>
+        <li>Powtarzaj tyle razy, ile potrzebujesz (i uzupełnij kawę)</li>
+      </ol>
+
+    </div>
+  </div>
+
+  <footer>
+    <i>Sebastian Sukiennik, 2022 ©</i><br>
+    <div id="zegar"></div>
+  </footer>
+</body>
+
+</html>
